@@ -1,17 +1,27 @@
 import "./globals.css";
-import Button from "@/components/button";
+import { Fira_Sans } from "next/font/google";
+import Footer from "./footer";
+import Header from "./header";
 
-export default function RootLayout ({ children }){
-  return(
-    <html>
+const firaSans = Fira_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800"],
+  variable: "--font-fira-sans",
+  display: "swap",
+});
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="pt-BR" className={firaSans.variable}>
       <body>
-        <header className="bg-emerald-50 text-black w-full p-4">Cabecalho
-          <Button>Criar conta</Button>
-          <Button>Entrar</Button>
-        </header>
-        <div className="bg-amber-600"> {children}</div>
-        <footer>rodape</footer>
+        <Header />
+        {children}
+        <Footer />
       </body>
     </html>
-  )
+  );
 }
